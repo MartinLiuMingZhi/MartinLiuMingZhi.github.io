@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>网络编程面试题</title>
+      <link href="/2024/03/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <url>/2024/03/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="描述TCP三次握手与四次挥手的过程与意义"><a href="#描述TCP三次握手与四次挥手的过程与意义" class="headerlink" title="描述TCP三次握手与四次挥手的过程与意义"></a>描述TCP三次握手与四次挥手的过程与意义</h1><h3 id="考生如何回答"><a href="#考生如何回答" class="headerlink" title="考生如何回答"></a><strong>考生如何回答</strong></h3><p>TCP&#x2F;IP协议定义了计算机在网络中如何发送数据、数据格式如何定义、发出消息后在网络中如何寻址找到目标计算机，最后目标计算机又如何检验收到消息的正确性、对数据拆解最后得到消息内容的一套处理标准。</p><p>有了这些标准后生产提供TCP&#x2F;IP服务的软件商家就有了一套统一的规范，只要遵循这个规范去实现自己的软件功能。</p><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>在进行业务通信前，必须建立好连接，而TCP&#x2F;IP连接的建立需要经过三次握手的过程。其过程如下图：</p><p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240319113623626.png" alt="image-20240319113623626"></p><ol><li><strong>第一次握手：</strong>建立连接时，客户端发送syn包（syn&#x3D;j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li><li><strong>第二次握手：</strong>服务器收到syn包，必须确认客户的SYN（ack&#x3D;j+1），同时自己也发送一个SYN包（syn&#x3D;k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li><li><strong>第三次握手：</strong>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack&#x3D;k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li></ol><h3 id="为什么要三次握手？"><a href="#为什么要三次握手？" class="headerlink" title="为什么要三次握手？"></a>为什么要三次握手？</h3><p>三次握手的意义在于确定双方都能够完成读写操作。</p><p>第一次握手，客户端发了个连接请求消息到服务端，服务端收到信息后知道自己与客户端是可以连接成功的，但此时客户端并不知道服务端是否已经接收到了它的请求，所以服务端接收到消息后的应答。客户端得到服务端的反馈后，才确定自己与服务端是可以连接上的，这就是第二次握手。而服务端发送出去的消息，要等客户端响应后，才能确定此次连接为有效连接。</p><h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>在完成数据交互之后，如果选择关闭连接，以回收资源，则完成四次挥手来进行“和平分手”。过程如下图：</p><p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240319113712703.png" alt="image-20240319113712703"></p><ol><li><strong>第一次挥手：</strong>主动关闭方发送第一个包，其中FIN标志位为1，发送顺序号seq为X。</li><li><strong>第二次挥手：</strong>被动关闭方收到FIN包后发送第二个包，其中发送顺序号seq为Z，接收顺序号ack为X+1。</li><li><strong>第三次挥手：</strong>被动关闭方再发送第三个包，其中FIN标志位为1，发送顺序号seq为Y，接收顺序号ack为X。</li><li><strong>第四次挥手：</strong>主动关闭方发送第四个包，其中发送顺序号为X，接收顺序号为Y。至此，完成四次挥手。</li></ol><h3 id="为什么断开连接需要四次挥手？"><a href="#为什么断开连接需要四次挥手？" class="headerlink" title="为什么断开连接需要四次挥手？"></a>为什么断开连接需要四次挥手？</h3><p>三次握手是因为建立连接时，ACK和SYN可以放在一个报文里来发送。而关闭连接时，被动关闭方可能还需要发送一些数据后，再发送FIN报文表示同意现在可以关闭连接了，所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。因此断开连接需要4次。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2024/03/18/hello-world/"/>
       <url>/2024/03/18/hello-world/</url>
